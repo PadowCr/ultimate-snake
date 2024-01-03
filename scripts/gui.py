@@ -1,4 +1,4 @@
-import pygame, variables as var, json
+import pygame, variables as var
 
 from scripts.GUI.button import Button
 
@@ -7,8 +7,7 @@ class GUI:
         self.game = game
         self.gui_screen = pygame.surface.Surface(var.GUI_SIZE)
 
-        self.startButton = Button(self, (120, 50), pygame.Color(109, 40, 217, 1), (50, 600))
-
+        self.startButton = Button(self, (var.GUI_SIZE[0] - 40, 50), pygame.Color(109, 40, 217, 1), (20, var.GUI_SIZE[1] - 100))
 
     def update(self):
         self.gui_screen.fill(var.SCREEN_COLOR)
@@ -21,6 +20,7 @@ class GUI:
 
         self.gui_screen.blit(self.startButton.image, self.startButton.rect)
         self.startButton.update()
+
 
     def writeText(self, text,  size, color, height):
         font = pygame.font.Font(None, size)
