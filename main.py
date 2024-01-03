@@ -14,7 +14,7 @@ class Main:
         self.screen = pygame.display.set_mode(var.SCREEN_SIZE)
         self.screen.fill(var.SCREEN_COLOR)
         
-        self.game = Game()
+        self.game = Game(self)
         self.gui = GUI(self.game)
 
 

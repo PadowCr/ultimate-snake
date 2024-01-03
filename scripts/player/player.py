@@ -47,6 +47,8 @@ class Player(pygame.sprite.Sprite):
         playerSprites[0].move(self.coords)
 
 
+
+    ######### POWERUPS #########
     def addBodyPart(self):
         playerSprites = self.body.sprites()
 
@@ -63,6 +65,11 @@ class Player(pygame.sprite.Sprite):
             newCoords = (playerSprites[-1].coords[0], playerSprites[-1].coords[1] - var.PLAYER_SIZE[1])
         
         self.body.add(PlayerPart(var.PlayerPartState.BODY, var.PLAYER_SIZE, var.PLAYER_COLOR_BODY, newCoords))
+
+
+    def multiplyBody(self):
+        for _ in range(5):
+            self.addBodyPart()
 
 
     def check_collision(self):

@@ -22,7 +22,8 @@ PLAYER_COLOR_BODY = pygame.Color(101, 163, 13, 1)
 PLAYER_COLOR_HEAD = pygame.Color(180, 83, 9, 1)
 
 APPLE_COLOR = pygame.Color(185, 28, 28, 1)
-
+MULTI_COLOR = pygame.Color(2,132,199, 1)
+DIVIDE_COLOR = pygame.Color(192,38,211, 1)
 
 class PlayerPartState(Enum):
     HEAD = 0

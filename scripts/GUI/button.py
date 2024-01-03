@@ -53,9 +53,6 @@ class Button:
             self.updateButton()
             self.gui.game.startGame()
 
-            print("on")
         else:
             self.createButton()
             self.gui.game.loseGame()
-
-            print("off")

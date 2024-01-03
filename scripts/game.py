@@ -2,10 +2,12 @@ import pygame, random, variables as var, json
 
 from scripts.player.player import Player
 from scripts.powerups.apple import Apple
-
+from scripts.powerups.multiplication import Multiplication
+from scripts.powerups.divider import Divider
 
 class Game:
-    def __init__(self):
+    def __init__(self, main):
+        self.main = main
         self.isPlaying = False
 
         self.clock = pygame.time.Clock()
@@ -45,6 +47,7 @@ class Game:
 
     def loseGame(self):
         self.isPlaying = False
+        self.main.gui.startButton.createButton()
 
         if self.score > self.highscore:
             with open('./assets/settings.json', 'w') as file:
@@ -80,8 +83,13 @@ class Game:
 
     def createPowerup(self):
         x, y = random.randint(0, var.GAME_COLS-1), random.randint(0, var.GAME_ROWS-1)
+        powerupNumber = random.randint(0, 1)
 
-        newPowerUp = Apple(self, (x*var.GAME_CELL_SIZE, y*var.GAME_CELL_SIZE))
+        if(powerupNumber == 0):
+            newPowerUp = Apple(self, (x*var.GAME_CELL_SIZE, y*var.GAME_CELL_SIZE))
+        elif(powerupNumber == 1):
+            newPowerUp = Multiplication(self, (x*var.GAME_CELL_SIZE, y*var.GAME_CELL_SIZE))
+
         self.powerups.add(newPowerUp)
 
     
