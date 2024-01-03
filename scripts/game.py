@@ -1,4 +1,4 @@
-import pygame, random, variables as var
+import pygame, random, variables as var, json
 
 from scripts.player.player import Player
 from scripts.powerups.apple import Apple
@@ -16,6 +16,8 @@ class Game:
         self.powerups = pygame.sprite.Group()
         
         self.initalizeGame()
+
+        self.data = []
 
 
     def update(self):
@@ -44,12 +46,21 @@ class Game:
     def loseGame(self):
         self.isPlaying = False
 
+        if self.score > self.highscore:
+            with open('./assets/settings.json', 'w') as file:
+                self.data["highscore"] = self.score
+                json.dump(self.data, file, indent=4)
+
 
     def initalizeGame(self):
+        with open('./assets/settings.json', 'r') as file:
+            self.data = json.load(file)
+
         self.last_move_time = pygame.time.get_ticks()
         self.initializeGrid()
 
         self.score = 0
+        self.highscore = self.data["highscore"]
         self.powerups.empty()
         self.createPowerup()
 
